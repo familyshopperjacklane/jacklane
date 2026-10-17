@@ -31,7 +31,7 @@ Remaining steps requiring your own account/provider access:
 3. To use numeric email OTPs, set the Supabase Auth email template to include `{{ .Token }}`, and configure production email delivery if needed.
 4. Create your own account through the website. Copy its UUID from Authentication → Users, then run this in the SQL Editor:
    `insert into public.admin_users (user_id) values ('YOUR-USER-UUID');`
-5. Deploy the Vite app to a host such as Vercel and add the two `VITE_SUPABASE_*` environment variables. Set the production domain in Supabase redirect settings.
+5. GitHub Pages deployment workflow is included at `.github/workflows/deploy.yml`. In GitHub, open Settings → Pages and choose **GitHub Actions** as the build/deployment source. The workflow builds from `.env.example` and publishes to `https://familyshopperjacklane.github.io/jacklane/`. Add that URL to Supabase Authentication → URL Configuration (Site URL and allowed redirect URLs). The workflow runs on pushes to `main`.
 
 ## Security
 - Never expose Supabase service-role or secret keys in browser code or `VITE_*` variables.
