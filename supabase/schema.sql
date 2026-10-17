@@ -1,5 +1,5 @@
 -- Family Shopper catalogue and admin access.
--- Run this in Supabase SQL Editor after connecting your project.
+-- This schema has been applied to Supabase project cmtkqsuxzholfpvtvmbo.
 create extension if not exists pgcrypto;
 
 create table if not exists public.profiles (
@@ -29,15 +29,17 @@ create table if not exists public.admin_users (
 );
 alter table public.admin_users enable row level security;
 
--- Public visitors can only read products currently marked in stock.
-create policy "Anyone can view in-stock products"
-  on public.products for select to anon, authenticated
-  using (in_stock = true);
-
--- Only users explicitly added to admin_users can manage the catalogue.
-create policy "Admins can view all products"
+-- Public visitors can only read products marked in stock.
+create policy "Public can view in-stock products"
+  on public.products for select to anon using (in_stock = true);
+create policy "Customers can view in-stock products and admins all products"
   on public.products for select to authenticated
-  using (exists (select 1 from public.admin_users a where a.user_id = (select auth.uid())));
+  using (
+    in_stock = true
+    or exists (select 1 from public.admin_users a where a.user_id = (select auth.uid()))
+  );
+
+-- Only users explicitly added to admin_users can manage catalogue rows.
 create policy "Admins can add products"
   on public.products for insert to authenticated
   with check (exists (select 1 from public.admin_users a where a.user_id = (select auth.uid())));
@@ -61,7 +63,6 @@ create policy "Admins can read admin list"
   on public.admin_users for select to authenticated
   using ((select auth.uid()) = user_id);
 
--- Storage bucket for product photos. Public read, authenticated admin writes only.
 insert into storage.buckets (id, name, public)
 values ('product-images', 'product-images', true)
 on conflict (id) do nothing;
@@ -88,6 +89,6 @@ create policy "Admins can delete product images"
     select 1 from public.admin_users a where a.user_id = (select auth.uid())
   ));
 
--- IMPORTANT: after signing up, add your own auth user UUID as the first admin
--- using the SQL Editor: insert into public.admin_users(user_id) values ('YOUR-AUTH-USER-UUID');
--- Never grant admin rights based on user-editable metadata or email alone.
+-- Grant admin rights only to the intended account using its auth.users UUID.
+-- Example after creating your account:
+-- insert into public.admin_users(user_id) values ('YOUR-USER-UUID');
