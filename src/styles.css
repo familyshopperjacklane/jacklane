@@ -165,3 +165,14 @@ button:disabled { cursor: not-allowed; }
 .site-announcement p:last-child{margin:0;line-height:1.65}
 .hero-image-frame img{width:100%;height:100%;object-fit:cover}
 @media(max-width:600px){.portal-tabs{flex-wrap:wrap}.site-announcement{align-items:flex-start;flex-direction:column}.site-announcement img{width:100%;height:170px}.website-editor-form{padding:18px}}
+
+
+/* Expanded editor controls, contact links, and responsive layout */
+.website-editor-form input:focus,.website-editor-form textarea:focus{outline:2px solid #b4232f55;border-color:var(--green)}
+.website-editor-form .feedback{display:flex;align-items:center;gap:8px}
+.footer-contact{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px;padding:0 0 24px;color:var(--cream)}
+.footer-contact a,.footer-contact span{display:inline-flex;align-items:center;gap:7px;color:inherit;text-decoration:none;overflow-wrap:anywhere}
+.footer-contact a:hover{text-decoration:underline}
+.site-announcement{box-shadow:0 8px 24px #741c270d}
+.website-editor-form h3{padding-top:3px}
+@media(max-width:600px){.footer-contact{flex-direction:column;align-items:flex-start;gap:12px}.website-editor-form input:not([type=checkbox]),.website-editor-form textarea{font-size:16px}}
