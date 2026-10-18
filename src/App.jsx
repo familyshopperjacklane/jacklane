@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { supabase, isSupabaseConfigured } from './lib/supabase';
-import { Search, ShoppingBasket, UserRound, ShieldCheck, Plus, X, LogOut, Pencil, Trash2, ImagePlus, CheckCircle2, AlertCircle, Mail, ArrowRight, Package, Store, ChevronDown } from 'lucide-react';
+import { Search, ShoppingBasket, UserRound, ShieldCheck, Plus, X, LogOut, Pencil, Trash2, ImagePlus, CheckCircle2, AlertCircle, Mail, ArrowRight, Package, Store, ChevronDown, ExternalLink } from 'lucide-react';
 
 const demoProducts = [
  {id:'demo-1',name:'Classic Cola',category:'Drinks',description:'A refreshing fizzy favourite.',price_pence:150,image_url:'https://images.unsplash.com/photo-1554866585-cd94860890b7?auto=format&fit=crop&w=900&q=85',in_stock:true,featured:true},
