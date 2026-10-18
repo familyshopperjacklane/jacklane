@@ -13,7 +13,7 @@ const demoProducts = [
 const money = p => (Number(p || 0) / 100).toLocaleString('en-GB',{style:'currency',currency:'GBP'});
 const blank = {name:'',category:'Drinks',description:'',price:'',image_url:'',in_stock:true,featured:false};
 
-function Brand({small=false}) { return <a className={'brand '+(small?'brand-small':'')} href="#" aria-label="Family Shopper home"><span className="brand-mark"><Store size={small?20:24}/></span><span>family<span className="brand-green">shopper</span><small>YOUR NEIGHBOURHOOD SHOP</small></span></a>; }
+function Brand({small=false}) { return <a className={'brand '+(small?'brand-small':'')} href="#" aria-label="Family Shopper home"><img className="brand-logo" src={import.meta.env.BASE_URL+'family-shopper-logo.svg'} alt="Family Shopper — Bargains everyday" /></a>; }
 
 function AuthModal({onClose,onDone}) {
  const [mode,setMode]=useState('login'),[email,setEmail]=useState(''),[password,setPassword]=useState(''),[otp,setOtp]=useState(''),[stage,setStage]=useState('form'),[busy,setBusy]=useState(false),[message,setMessage]=useState(''),[error,setError]=useState('');
