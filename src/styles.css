@@ -137,3 +137,8 @@ button:disabled { cursor: not-allowed; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Multicolour Google identity mark */
+.google-logo { width: 18px; height: 18px; display: inline-block; flex: 0 0 18px; }
+.social-button .google-logo { width: 19px; height: 19px; flex-basis: 19px; }
+.sign-in { gap: 8px; }
