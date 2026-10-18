@@ -111,3 +111,29 @@ button:disabled { cursor: not-allowed; }
  .portal-main { width: calc(100% - 32px); padding-top: 20px; padding-bottom: 32px; }
  .portal-welcome { margin: 24px auto; padding: 28px 19px; }
 }
+
+
+/* Rojo (red) brand palette */
+:root {
+  --green: #b4232f;
+  --deep: #741c27;
+  --lime: #f4b6bc;
+  --cream: #fffafa;
+  --muted: #806d70;
+  --line: #f0dfe1;
+}
+::selection { background: #f7d4d8; color: var(--deep); }
+.hero { background: #fff0f1; }
+.hero h1 em, .section-heading h2 em, .about-inner h2 em { color: #b4232f; }
+.eyebrow { color: #a52a36; }
+.hero-copy .eyebrow>span, .hero-bottom i { background: #c94b56; }
+.hero-bottom { border-top-color: #f0d7da; color: #946d72; }
+.header-basket, .note-star, .portal-icon { background: #fbe4e6; color: #9f202d; }
+.product-tag, .filter-chip.active, .filter-chip:hover { background: #b4232f; border-color: #b4232f; color: white; }
+.demo-banner, .notice { border-color: #f0cbd0; background: #fff0f1; color: #87303a; }
+.about-section { background: #fff0f1; }
+.footer-main .brand { background: transparent; }
+.portal-footer { background: #741c27; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
