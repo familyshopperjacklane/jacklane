@@ -142,3 +142,26 @@ button:disabled { cursor: not-allowed; }
 .google-logo { width: 18px; height: 18px; display: inline-block; flex: 0 0 18px; }
 .social-button .google-logo { width: 19px; height: 19px; flex-basis: 19px; }
 .sign-in { gap: 8px; }
+
+
+/* Website editor and published homepage content */
+.portal-tabs{display:flex;gap:10px;margin:0 0 22px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.portal-tabs button{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:10px 16px;background:var(--cream);color:var(--deep);font:inherit;font-weight:700;cursor:pointer}
+.portal-tabs button.active{background:var(--deep);border-color:var(--deep);color:white}
+.website-editor{margin-bottom:44px}
+.website-editor-form{max-width:820px;display:flex;flex-direction:column;gap:15px}
+.website-editor-form h3{margin:0;color:var(--deep)}
+.website-editor-form label{display:flex;flex-direction:column;gap:7px;font-weight:600}
+.website-editor-form input:not([type=checkbox]),.website-editor-form textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 13px;background:white;color:inherit;font:inherit;font-weight:400}
+.website-editor-form textarea{resize:vertical}
+.website-editor-form small{font-size:.82rem;color:var(--muted);font-weight:400}
+.website-editor-form .check-label{display:flex;flex-direction:row;align-items:center;gap:9px}
+.website-editor-form input[type=checkbox]{width:17px;height:17px;accent-color:var(--green)}
+.website-form-divider{height:1px;background:var(--line);margin:8px 0}
+.website-preview{width:100%;max-width:420px;max-height:220px;object-fit:cover;border-radius:12px}
+.site-announcement{display:flex;align-items:center;gap:22px;margin:0 0 34px;padding:20px;border:1px solid var(--line);border-radius:18px;background:#fff3f4}
+.site-announcement img{width:130px;height:110px;object-fit:cover;border-radius:12px;flex-shrink:0}
+.site-announcement h3{margin:4px 0 8px;color:var(--deep);font-size:1.3rem}
+.site-announcement p:last-child{margin:0;line-height:1.65}
+.hero-image-frame img{width:100%;height:100%;object-fit:cover}
+@media(max-width:600px){.portal-tabs{flex-wrap:wrap}.site-announcement{align-items:flex-start;flex-direction:column}.site-announcement img{width:100%;height:170px}.website-editor-form{padding:18px}}
