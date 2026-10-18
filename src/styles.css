@@ -188,3 +188,67 @@ button:disabled { cursor: not-allowed; }
 .favorite-button.is-favorite{background:var(--deep);color:#fff}
 .favorite-button:focus-visible,.sort-control select:focus-visible{outline:3px solid var(--lime);outline-offset:3px}
 @media(max-width:560px){.catalogue-tools{align-items:stretch}.sort-control{justify-content:space-between;width:100%}.sort-control select{flex:1;min-width:0}}
+
+
+/* Shopping list: persistent, accessible and print-friendly. */
+.list-trigger { position: relative; border: 0; cursor: pointer; }
+.basket-count {
+  position: absolute; top: -5px; right: -5px; min-width: 19px; height: 19px;
+  padding: 0 5px; display: grid; place-items: center; border-radius: 999px;
+  background: #73964e; color: white; border: 2px solid var(--cream);
+  font-size: 9px; font-weight: 700; line-height: 1;
+}
+.add-list-button {
+  width: 100%; margin-top: 13px; padding: 10px 12px; display: flex;
+  align-items: center; justify-content: center; gap: 7px; border: 1px solid #dce5d2;
+  border-radius: 7px; background: #f5f8ef; color: var(--green);
+  font-size: 10px; font-weight: 700; transition: background .18s, transform .18s;
+}
+.add-list-button:hover:not(:disabled) { background: #e9f1dc; transform: translateY(-1px); }
+.add-list-button:disabled { opacity: .45; cursor: not-allowed; }
+.list-backdrop {
+  position: fixed; inset: 0; z-index: 60; display: flex; justify-content: flex-end;
+  background: rgba(12, 33, 25, .58); backdrop-filter: blur(3px);
+}
+.shopping-list-panel {
+  width: min(100%, 470px); height: 100%; overflow-y: auto; background: var(--cream);
+  padding: 28px; box-shadow: -18px 0 50px rgba(8, 28, 18, .16);
+  display: flex; flex-direction: column;
+}
+.shopping-list-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+.shopping-list-heading .eyebrow { margin-bottom: 10px; }
+.shopping-list-heading h2 { display: flex; align-items: center; gap: 10px; margin: 0; color: var(--deep); font: 500 29px/1.2 var(--serif); }
+.shopping-list-heading h2 svg { color: #73964e; }
+.shopping-list-heading .muted { margin: 9px 0 0; font-size: 11px; }
+.list-empty { flex: 1; min-height: 280px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #82907e; }
+.list-empty > svg { color: #83a263; }
+.list-empty h3 { margin: 15px 0 5px; color: var(--deep); font: 500 22px var(--serif); }
+.list-empty p { max-width: 260px; font-size: 11px; line-height: 1.7; margin: 0 0 18px; }
+.shopping-list-items { padding: 5px 0; }
+.shopping-list-item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; border-bottom: 1px solid #e9ece3; }
+.shopping-list-copy { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.shopping-list-copy strong { font-size: 12px; color: #294834; overflow-wrap: anywhere; }
+.shopping-list-copy small { font-size: 10px; color: #7b887b; }
+.quantity-controls { display: flex; align-items: center; gap: 7px; flex-shrink: 0; }
+.quantity-controls .icon-button { width: 29px; height: 29px; flex-basis: 29px; }
+.quantity-controls > span { min-width: 14px; text-align: center; font-size: 11px; font-weight: 700; color: var(--deep); }
+.shopping-list-total { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 20px 0 10px; margin-top: auto; border-top: 1px solid #dfe5d8; color: #627264; font-size: 12px; }
+.shopping-list-total strong { color: var(--deep); font-size: 22px; letter-spacing: -.5px; }
+.list-disclaimer { color: #8a9588; font-size: 9px; line-height: 1.65; margin: 0 0 18px; }
+.shopping-list-actions { display: flex; gap: 10px; }
+.shopping-list-actions .button { flex: 1; }
+@media (max-width: 480px) {
+  .shopping-list-panel { padding: 21px 17px; }
+  .shopping-list-heading h2 { font-size: 25px; }
+  .shopping-list-item { align-items: flex-start; flex-direction: column; }
+  .quantity-controls { width: 100%; justify-content: flex-end; }
+}
+@media print {
+  body * { visibility: hidden !important; }
+  .list-backdrop, .list-backdrop * { visibility: visible !important; }
+  .list-backdrop { position: absolute; inset: 0; background: white; display: block; }
+  .shopping-list-panel { width: 100%; height: auto; overflow: visible; padding: 0; box-shadow: none; }
+  .shopping-list-heading .icon-button, .quantity-controls button, .shopping-list-actions { display: none !important; }
+  .shopping-list-item { break-inside: avoid; }
+  .list-disclaimer { color: #444; }
+}
