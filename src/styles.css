@@ -87,3 +87,27 @@ button:disabled { cursor: not-allowed; }
   .brand-small .brand-logo { width: min(205px, 54vw); }
   .footer-main .brand { background: transparent; padding: 0; }
 }
+
+
+/* Dedicated Family Shopper admin portal */
+.portal-shell { min-height: 100vh; display: flex; flex-direction: column; background: #f7f8f2; }
+.portal-header { background: var(--cream); border-bottom: 1px solid var(--line); }
+.portal-header-inner { min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.portal-label { display: inline-flex; align-items: center; gap: 8px; color: var(--green); font-size: 10px; font-weight: 800; letter-spacing: 1.2px; }
+.portal-main { flex: 1; padding-top: 36px; padding-bottom: 54px; width: min(1160px,calc(100% - 48px)); }
+.portal-welcome { width: min(100%,560px); margin: 48px auto; padding: 42px; text-align: center; background: white; border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow-soft); }
+.portal-icon { width: 62px; height: 62px; margin: 0 auto 22px; display: grid; place-items: center; border-radius: 18px; background: #edf3e3; color: var(--green); }
+.portal-welcome .eyebrow { justify-content: center; }
+.portal-welcome h1 { margin: 0; font: 500 clamp(34px,5vw,48px)/1.15 var(--serif); color: var(--deep); letter-spacing: -1px; }
+.portal-welcome h1 em { color: #73964e; font-weight: 500; }
+.portal-welcome .muted { max-width: 400px; margin: 16px auto 24px; font-size: 13px; line-height: 1.8; }
+.portal-main .admin-section { padding-top: 0; }
+.portal-main .admin-panel { box-shadow: var(--shadow-soft); }
+.portal-footer { text-align: center; padding: 20px 16px; color: #b7c6b5; background: var(--deep); font-size: 10px; }
+@media (max-width: 640px) {
+ .portal-header-inner { min-height: 72px; gap: 8px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
+ .portal-label { order: 3; width: 100%; justify-content: center; font-size: 9px; }
+ .portal-header-inner>.button { font-size: 10px; padding: 9px 10px; }
+ .portal-main { width: calc(100% - 32px); padding-top: 20px; padding-bottom: 32px; }
+ .portal-welcome { margin: 24px auto; padding: 28px 19px; }
+}
