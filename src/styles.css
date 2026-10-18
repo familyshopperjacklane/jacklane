@@ -58,3 +58,32 @@ button:disabled { cursor: not-allowed; }
   .account-menu { animation: none; }
 }
 
+
+
+/* Family Shopper logo asset */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-width: 0;
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: var(--deep);
+}
+.brand-logo {
+  display: block;
+  width: clamp(205px, 26vw, 300px);
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.brand-small .brand-logo { width: 245px; }
+.footer-main .brand { background: transparent; padding: 0; }
+.auth-modal > .brand { background: var(--deep); padding: 6px 8px; width: fit-content; }
+@media (max-width: 640px) {
+  .brand { padding: 4px 6px; }
+  .brand-logo { width: clamp(175px, 48vw, 225px); }
+  .brand-small .brand-logo { width: min(205px, 54vw); }
+  .footer-main .brand { background: transparent; padding: 0; }
+}
