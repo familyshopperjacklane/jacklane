@@ -261,6 +261,7 @@ button:disabled { cursor: not-allowed; }
 .bulk-import-help{margin:18px 0;padding:13px 15px;border-radius:8px;background:#f3f6ec;color:#5c6d55;font-size:11px;line-height:1.8}
 .bulk-import-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .bulk-import-controls .upload-button{margin:0;min-height:42px}
+.margin-control{display:flex;flex-direction:column;gap:4px;color:var(--deep);font-size:10px;font-weight:700;min-width:145px}.margin-control input{width:100%;min-height:34px;border:1px solid #dfe5d8;border-radius:8px;padding:0 9px;background:white;color:var(--deep);font-size:12px}
 .bulk-import-controls>select{min-height:42px;max-width:210px;border:1px solid #dfe5d8;border-radius:8px;padding:0 10px;background:white;color:var(--deep);font-size:11px}
 .bulk-import-card>.tiny{font-size:10px;line-height:1.7;margin:12px 0;color:#7b867c}
 .bulk-import-card .feedback{margin-top:12px}
