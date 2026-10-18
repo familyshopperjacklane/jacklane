@@ -15,12 +15,20 @@ const blank = {name:'',category:'Drinks',description:'',price:'',image_url:'',in
 
 const normalizeBarcode = value => String(value || '').replace(/\D/g, '');
 function parseCsvRows(text) {
- const lines=String(text||'').replace(/^\uFEFF/,'').split(/\r?\n/).filter(line=>line.trim());
+ const lines=String(text||'').replace(/^\\uFEFF/,'').split(/\\r?\\n/).filter(line=>line.trim());
  const parseLine=line=>{const out=[];let v='',q=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'&&q&&line[i+1]==='"'){v+='"';i++}else if(c==='"')q=!q;else if(c===','&&!q){out.push(v.trim());v=''}else v+=c}out.push(v.trim());return out};
  if(!lines.length)return [];
- const headers=parseLine(lines[0]).map(v=>v.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,''));
- if(headers.some(h=>/barcode|ean|gtin|upc/.test(h))&&headers.some(h=>/name|product|description/.test(h)))return lines.slice(1).map(line=>Object.fromEntries(headers.map((h,i)=>[h,parseLine(line)[i]||''])));
- return lines.map(line=>({barcode:normalizeBarcode(line)})).filter(row=>row.barcode);
+ const parsed=lines.map(parseLine);
+ const headers=parsed[0].map(v=>v.toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,''));
+ if(headers.some(h=>/barcode|ean|gtin|upc/.test(h))&&headers.some(h=>/name|product|description/.test(h)))return parsed.slice(1).map(cols=>Object.fromEntries(headers.map((h,i)=>[h,cols[i]||''])));
+ // CS3000 scanner exports: date,time,status,barcode (for example 10/18/26,14:18:30,0B,1000031515008).
+ // Extract only the final field so dates, times and scanner status never become part of a barcode.
+ return parsed.map(cols=>{
+  if(cols.length>=4&&/^\\d{1,2}\\/\\d{1,2}\\/\\d{2,4}$/.test(cols[0])&&/^\\d{1,2}:\\d{2}(?::\\d{2})?$/.test(cols[1]))return {barcode:normalizeBarcode(cols[3])};
+  if(cols.length===1)return {barcode:normalizeBarcode(cols[0])};
+  // Also support simple comma-separated scanner files where the barcode is in the last column.
+  return {barcode:normalizeBarcode(cols[cols.length-1])};
+ }).filter(row=>row.barcode);
 }
 const pickField=(row,patterns)=>{const key=Object.keys(row||{}).find(k=>patterns.some(p=>p.test(k)));return key?String(row[key]||'').trim():''};
 const guessCategory=value=>{const t=String(value||'').toLowerCase();if(/drink|beverage|water|juice|soda|cola|tea|coffee/.test(t))return 'Drinks';if(/snack|crisps|chips|nuts|popcorn/.test(t))return 'Snacks';if(/chocolate|sweet|candy|confection|biscuit|cookie/.test(t))return 'Confectionery';if(/clean|detergent|washing|toilet paper|tissue|household/.test(t))return 'Household';if(/fresh|fruit|vegetable|meat|dairy|milk|bread|cheese/.test(t))return 'Fresh food';if(/food|grocery|pasta|rice|tin|canned|sauce/.test(t))return 'Essentials';return 'Other'};
