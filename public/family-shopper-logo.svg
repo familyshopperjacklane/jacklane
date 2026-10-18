@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="437" height="74" viewBox="0 0 437 74" role="img" aria-labelledby="title">
+<title id="title">Family Shopper — Bargains everyday</title>
+<g fill="none" stroke="#fff" stroke-width="4">
+  <path d="M73 9C59 -2 37 3 22 17 7 31 2 49 12 62c9 12 28 13 44 4" stroke-linecap="round"/>
+  <circle cx="45" cy="37" r="27" stroke-width="3"/>
+  <path d="M26 28h38l-4 23H31z" fill="#fff" stroke="none"/>
+  <path d="M32 32v14M41 32v14M50 32v14M59 32v14" stroke="#173b2b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M27 28l5-10h21l5 10" stroke-width="4" stroke-linejoin="round"/>
+</g>
+<g fill="#fff" font-family="Arial,Helvetica,sans-serif" font-weight="900">
+  <text x="88" y="35" font-size="31" letter-spacing="-1.2">FAMILY SHOPPER</text>
+  <text x="89" y="62" font-size="24" letter-spacing="-.8">Bargains everyday</text>
+</g>
+</svg>
