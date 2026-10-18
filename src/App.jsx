@@ -15,7 +15,7 @@ const blank = {name:'',category:'Drinks',description:'',price:'',image_url:'',in
 
 const normalizeBarcode = value => String(value || '').replace(/\D/g, '');
 function parseCsvRows(text) {
- const lines=String(text||'').replace(/^\\uFEFF/,'').split(/\\r?\\n/).filter(line=>line.trim());
+ const lines=String(text||'').replace(/^\uFEFF/,'').split(/\r?\n/).filter(line=>line.trim());
  const parseLine=line=>{const out=[];let v='',q=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'&&q&&line[i+1]==='"'){v+='"';i++}else if(c==='"')q=!q;else if(c===','&&!q){out.push(v.trim());v=''}else v+=c}out.push(v.trim());return out};
  if(!lines.length)return [];
  const parsed=lines.map(parseLine);
@@ -24,7 +24,7 @@ function parseCsvRows(text) {
  // CS3000 scanner exports: date,time,status,barcode (for example 10/18/26,14:18:30,0B,1000031515008).
  // Extract only the final field so dates, times and scanner status never become part of a barcode.
  return parsed.map(cols=>{
-  if(cols.length>=4&&/^\\d{1,2}\\/\\d{1,2}\\/\\d{2,4}$/.test(cols[0])&&/^\\d{1,2}:\\d{2}(?::\\d{2})?$/.test(cols[1]))return {barcode:normalizeBarcode(cols[3])};
+  if(cols.length>=4&&/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(cols[0])&&/^\d{1,2}:\d{2}(?::\d{2})?$/.test(cols[1]))return {barcode:normalizeBarcode(cols[3])};
   if(cols.length===1)return {barcode:normalizeBarcode(cols[0])};
   // Also support simple comma-separated scanner files where the barcode is in the last column.
   return {barcode:normalizeBarcode(cols[cols.length-1])};
